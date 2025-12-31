@@ -89,7 +89,7 @@ function Workexp({ experience, setResume }) {
                                 }}
                                 className="text-red-600 text-sm font-semibold hover:underline"
                             >
-                                <img src='./public/delete.png' height="20px" width="25px" />
+                                <img src='/delete.png' height="20px" width="25px" />
                             </button>
                         </div>
                     </div>
