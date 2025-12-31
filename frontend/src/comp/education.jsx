@@ -71,7 +71,7 @@ function Education({ education, setResume }) {
 
                                     <input className='w-[40%] border-b-1 border-r-1'
                                         type='text'
-                                        placeholder='Duration'
+                                        placeholder='ex: 20XX-20XX'
                                         value={edu.duration}
                                         onChange={(e) => handleEduChange(edu.id, 'duration', e.target.value)}
                                     />
@@ -88,7 +88,7 @@ function Education({ education, setResume }) {
                                 }}
                                 className="text-red-600 text-sm font-semibold hover:underline"
                             >
-                                <img src='./public/delete.png' height="20px" width="25px"/>
+                                <img src='./delete.png' height="20px" width="25px"/>
                             </button>
                             </div>
                         </div>

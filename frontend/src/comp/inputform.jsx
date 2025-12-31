@@ -13,7 +13,7 @@ function Inputform() {
     personal: {
       first_name: "",
       last_name: "",
-      position:"",
+      position: "",
       phone: "",
       email: "",
       address: "",
@@ -30,7 +30,7 @@ function Inputform() {
         institute: "",
         degree: "",
         duration: "",
-        open:true
+        open: true
       }
     ],
 
@@ -42,7 +42,7 @@ function Inputform() {
         duration: "",
         city: "",
         description: "",
-        open:true
+        open: true
       }
     ],
 
@@ -50,56 +50,69 @@ function Inputform() {
       {
         id: crypto.randomUUID(),
         name: "",
-        level:0,
-        open: true 
+        level: 0,
+        open: true
       }
-      
+
     ]
   });
 
-
+  const [fullpre, setfullpre] = useState(false);
   return (
     <div className='min-h-screen'>
-      <div className='min-w-[1240px] h-full flex flex-row gap-2 text-black'>
-        <div className='w-1/2 flex flex-col min-h-screen'>
-          <div className='border-l-1 border-r-1 border-black pt-[15px] h-[100%]'>
-            {step === 0 && <Welcome />}
-            {step === 1 && <Personal personal={resume.personal} setResume={setResume} />}
-            {step === 2 && <Education education={resume.education} setResume={setResume} />}
-            {step === 3 && <Workexp experience={resume.experience} setResume={setResume} />}
-            {step === 4 && <Skills skills={resume.skills} setResume={setResume}/>}
-  
 
-              <div className="flex justify-between mt-15">
-                {step > 0 && (
-                  <button className="ml-[20px] px-6 py-3 rounded-xl border-1 bg-black text-white 
+      <button onClick={() => setfullpre(prev => !prev)} className="fixed bottom-2 right-2 z-10 px-6 py-3 mr-[2px] rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[10px]">
+        {fullpre ? "Exit Preview" : "Zoom Your Resume"}
+      </button>
+
+      <div className='min-w-[1240px] h-full flex flex-row gap-2 text-black'>
+        {fullpre ? (
+          <div className='flex border border-2 w-[83%] mx-auto min-h-screen'>
+            <Preview resume={resume} />
+          </div>
+        ) : (
+          <>
+            <div className='w-1/2 flex flex-col min-h-screen'>
+              <div className='border-l-1 border-r-1 border-black pt-[15px] h-[100%]'>
+                {step === 0 && <Welcome />}
+                {step === 1 && <Personal personal={resume.personal} setResume={setResume} />}
+                {step === 2 && <Education education={resume.education} setResume={setResume} />}
+                {step === 3 && <Workexp experience={resume.experience} setResume={setResume} />}
+                {step === 4 && <Skills skills={resume.skills} setResume={setResume} />}
+
+
+                <div className="flex justify-between mt-15">
+                  {step > 0 && (
+                    <button className="ml-[20px] px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]" onClick={() => setStep(step - 1)}>Back</button>
-                )}
+                  )}
 
-                {step < 5 && (
-                  <button className='mr-[20px] ml-[20px] px-6 py-3 rounded-xl border-1 bg-black text-white 
+                  {step < 5 && (
+                    <button className='mr-[20px] ml-[20px] px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]' onClick={() => setStep(step + 1)}>Next</button>
-                )}
+                  )}
+                </div>
               </div>
+
             </div>
-          
-        </div>
 
-        <div className='w-[65%] border-2 border-black min-h-full'>
-          <Preview resume={resume} />
-        </div>
+            <div className='w-[65%] border-2 border-black min-h-full'>
+              <Preview resume={resume} />
+            </div>
 
 
 
 
+          </>
 
 
 
 
-
-
+        )}
       </div>
     </div>
 

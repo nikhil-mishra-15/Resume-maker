@@ -54,11 +54,11 @@ function Preview({ resume }) {
     <div>
       <section className='flex flex-col gap-3'>
         <div className='flex flex-col relative'>
-        <h2 className='mt-[2px] text-4xl '>{resume.personal.first_name}</h2>
+        <h2 className='text-4xl py-auto'>{resume.personal.first_name}</h2>
         <p className='font-bold text-sm text-gray-500 mt-[3px]'>{resume.personal.position}</p>
         </div>
 
-        <div className='flex flex-row justify-between text-[12px] text-gray-500 pl-[10px] pr-[10px] mt-[10px]'>
+        <div className='flex flex-row justify-between text-[12px] text-gray-500 font-semibold pl-[10px] pr-[10px] mt-[10px]'>
           <p >{resume.personal.phone}</p>
           <p>{resume.personal.email}</p>
           <p>{resume.personal.address}</p>

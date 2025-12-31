@@ -60,7 +60,7 @@ function Personal({personal, setResume}) {
               <h4 className='pl-[20px] mt-[25px]'> Tell us About yourself </h4>
               <input className='w-[200px] ml-[20px] mt-[20px] border-1 text-[13px] pl-[7px]'
                 value={personal.about}
-                placeholder="max 100 words"
+                placeholder="min 50 words"
                 onChange={(e) => setResume(prev => ({ ...prev, personal: { ...prev.personal, about: e.target.value } }))}
               />
             </div>

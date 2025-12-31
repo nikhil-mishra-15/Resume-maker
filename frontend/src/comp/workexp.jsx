@@ -58,7 +58,7 @@ function Workexp({ experience, setResume }) {
 
                                     <input className='border-b-1 border-r-1'
                                         type='text'
-                                        placeholder='Duration'
+                                        placeholder='ex: 2 years'
                                         value={work.duration}
                                         onChange={(e) => handleworkchange(work.id, 'duration', e.target.value)}
                                     />
