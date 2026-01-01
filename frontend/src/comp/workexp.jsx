@@ -25,7 +25,7 @@ function Workexp({ experience, setResume }) {
 
     return (
         <div>
-            <section className='mt-[20px] flex flex-col gap-8 mt-[50px]'>
+            <section className='flex flex-col gap-8 '>
                 <p className='flex justify-start pl-[20px] text-lg font-bold'>Employment history</p>
                 {experience.map((work, index) => (
                     <div key={work.id} className=' rounded-lg p-4 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)]'>

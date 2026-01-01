@@ -32,7 +32,7 @@ function Education({ education, setResume }) {
 
     return (
         <div>
-            <div className='mt-[20px] flex flex-col gap-8 mt-[50px]'>
+            <div className='flex flex-col gap-8'>
 
                 <p><span className='flex justify-start pl-[20px] text-lg font-bold'>Education</span></p>
 

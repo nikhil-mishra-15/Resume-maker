@@ -68,7 +68,7 @@ function Skills({ skills, setResume }) {
   };
 
   return (
-    <div className="mt-[50px]">
+    <div className="">
       <h2 className="flex justify-start pl-[20px] text-lg font-bold">Skills</h2>
 
       {skills.map(skill => {

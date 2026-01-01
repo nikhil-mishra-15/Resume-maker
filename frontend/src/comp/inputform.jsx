@@ -60,7 +60,10 @@ function Inputform() {
   const [fullpre, setfullpre] = useState(false);
   return (
     <div className='min-h-screen'>
-
+      <div className='flex flex-row fixed gap-2 top-1.5 left-1.5'>
+      <img src='/icon.jpg' height="10px" width="25px"/>
+      <p className='text-m font-semibold text-black'>myResume-maker</p>
+      </div>
       <button onClick={() => setfullpre(prev => !prev)} className="fixed bottom-2 right-2 z-10 px-6 py-3 mr-[2px] rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[10px]">
@@ -75,7 +78,8 @@ function Inputform() {
         ) : (
           <>
             <div className='w-1/2 flex flex-col min-h-screen'>
-              <div className='border-l-1 border-r-1 border-black pt-[15px] h-[100%]'>
+              <div className='pt-[15px] h-[100%]'>
+              <div className='flex border-l-1 border-r-1 flex-col place-content-center mt-[50px]'>
                 {step === 0 && <Welcome />}
                 {step === 1 && <Personal personal={resume.personal} setResume={setResume} />}
                 {step === 2 && <Education education={resume.education} setResume={setResume} />}
@@ -95,6 +99,7 @@ function Inputform() {
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]' onClick={() => setStep(step + 1)}>Next</button>
                   )}
+                </div>
                 </div>
               </div>
 

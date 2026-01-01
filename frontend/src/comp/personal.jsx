@@ -3,7 +3,7 @@ import React from 'react'
 function Personal({personal, setResume}) {
   return (
     <div>
-      <section className='flex flex-col gap-2 mt-[50px]'>
+      <section className='flex flex-col gap-2'>
       <p><span className='flex justify-start pl-[20px] text-lg font-bold'>Personal Information</span></p>
             <div className='flex flex-row'>
               <h4 className='pl-[20px] mt-[25px]'>Enter your Name:</h4>
