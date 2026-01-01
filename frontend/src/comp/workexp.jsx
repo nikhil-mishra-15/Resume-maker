@@ -28,7 +28,7 @@ function Workexp({ experience, setResume }) {
             <section className='mt-[20px] flex flex-col gap-8 mt-[50px]'>
                 <p className='flex justify-start pl-[20px] text-lg font-bold'>Employment history</p>
                 {experience.map((work, index) => (
-                    <div key={work.id} className='border rounded-lg p-4 w-[80%] ml-[10px]'>
+                    <div key={work.id} className=' rounded-lg p-4 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)]'>
                         <div onClick={() => togglework(work.id)} className="flex justify-between items-center cursor-pointer">
                             <div>
                                 <p className='font-semibold'>
@@ -42,37 +42,37 @@ function Workexp({ experience, setResume }) {
                         {work.open && (
                             <div className="space-y-6 mt-1">
                                 <div className='grid grid-cols-2 gap-2 w-[100%] pt-[10px]'>
-                                    <input className=' border-b-1 border-r-1 mb-[10px]'
+                                    <input className='mb-[10px]'
                                         type='text'
-                                        placeholder='Job Title'
+                                        placeholder='  Job Title'
                                         value={work.job_title}
                                         onChange={(e) => handleworkchange(work.id, 'job_title', e.target.value)}
                                     />
 
-                                    <input className=' border-b-1 border-r-1 mb-[10px]'
+                                    <input className='mb-[10px]'
                                         type='text'
-                                        placeholder='Company'
+                                        placeholder='  Company'
                                         value={work.company}
                                         onChange={(e) => handleworkchange(work.id, 'company', e.target.value)}
                                     />
 
-                                    <input className='border-b-1 border-r-1'
+                                    <input className=''
                                         type='text'
-                                        placeholder='ex: 2 years'
+                                        placeholder='  ex: 2 years'
                                         value={work.duration}
                                         onChange={(e) => handleworkchange(work.id, 'duration', e.target.value)}
                                     />
 
-                                    <input className=' border-b-1 border-r-1'
+                                    <input className=''
                                         type='text'
-                                        placeholder='City'
+                                        placeholder='  City'
                                         value={work.city}
                                         onChange={(e) => handleworkchange(work.id, 'city', e.target.value)}
                                     />
 
-                                    <input className='border-b-1 border-r-1 mt-[10px]'
+                                    <input className='mt-[10px]'
                                         type='text'
-                                        placeholder='Description'
+                                        placeholder='  Description'
                                         value={work.description}
                                         onChange={(e) => handleworkchange(work.id, 'description', e.target.value)}
                                     />

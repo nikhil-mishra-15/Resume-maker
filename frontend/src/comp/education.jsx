@@ -37,7 +37,7 @@ function Education({ education, setResume }) {
                 <p><span className='flex justify-start pl-[20px] text-lg font-bold'>Education</span></p>
 
                 {education.map((edu, index) => (
-                    <div key={edu.id} className='border rounded-lg p-4 w-[80%] ml-[10px]'>
+                    <div key={edu.id} className=' rounded-lg p-4 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)]'>
 
                         {/* HEADER (collapsed view) */}
                         <div onClick={() => toggleedu(edu.id)} className="flex justify-between items-center cursor-pointer">
@@ -53,25 +53,25 @@ function Education({ education, setResume }) {
 
                         {/* BODY (expanded view) */}
                         {edu.open && (
-                            <div className="space-y-6 mt-1">
+                            <div className="space-y-6 mt-5 ">
                                 <div className='flex justify-around gap-2'>
-                                    <input className='w-[40%] border-b-1 border-r-1'
+                                    <input className='w-[40%]'
                                         type='text'
-                                        placeholder='Institute'
+                                        placeholder='  Institute'
                                         value={edu.institute}
                                         onChange={(e) => handleEduChange(edu.id, 'institute', e.target.value)}
                                     />
 
-                                    <input className='w-[40%] border-b-1 border-r-1'
+                                    <input className='w-[40%]'
                                         type='text'
-                                        placeholder='Degree'
+                                        placeholder='  Degree'
                                         value={edu.degree}
                                         onChange={(e) => handleEduChange(edu.id, 'degree', e.target.value)}
                                     />
 
-                                    <input className='w-[40%] border-b-1 border-r-1'
+                                    <input className='w-[40%]'
                                         type='text'
-                                        placeholder='ex: 20XX-20XX'
+                                        placeholder='  ex: 20XX-20XX'
                                         value={edu.duration}
                                         onChange={(e) => handleEduChange(edu.id, 'duration', e.target.value)}
                                     />

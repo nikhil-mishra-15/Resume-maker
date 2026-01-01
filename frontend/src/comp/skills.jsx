@@ -75,7 +75,7 @@ function Skills({ skills, setResume }) {
         const level = LEVELS[skill.level];
 
         return (
-          <div key={skill.id} className="border rounded-lg p-4 mt-6 w-[80%] ml-[10px]">
+          <div key={skill.id} className="rounded-lg p-4 mt-6 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)]">
 
             {/* HEADER (collapsed view) */}
             <div
@@ -103,8 +103,8 @@ function Skills({ skills, setResume }) {
                 <div className="flex justify-around">
                   <input
                     type="text"
-                    placeholder="Skill name"
-                    className="border-b w-[40%] outline-none"
+                    placeholder="  Skill name"
+                    className="w-[60%] outline-none"
                     value={skill.name}
                     onChange={(e) =>
                       updateSkill(skill.id, "name", e.target.value)
