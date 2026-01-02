@@ -1,13 +1,17 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
+
 
 function Workexp({ experience, setResume }) {
+
+    const navigate = useNavigate();
 
     function handleworkchange(id, field, value) {
         setResume(prev => ({ ...prev, experience: prev.experience.map(work => work.id === id ? { ...work, [field]: value } : work) }))
     }
 
     function addWork() {
-        setResume(prev => ({ ...prev, experience: [...prev.experience.map(work=> ({ ...work, open: false })), { id: crypto.randomUUID(), job_title: "", company: "", duration: "", role: "", description: "", open:true }] }))
+        setResume(prev => ({ ...prev, experience: [...prev.experience.map(work => ({ ...work, open: false })), { id: crypto.randomUUID(), job_title: "", company: "", duration: "", role: "", description: "", open: true }] }))
     }
 
     const togglework = (id) => {
@@ -94,11 +98,31 @@ function Workexp({ experience, setResume }) {
                         </div>
                     </div>
                 ))
-              }
+                }
 
                 <button onClick={addWork} className='mx-auto px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]'>+ Add one more Employment history</button>
+
+               <div className='flex justify-between ml-[10px] mr-[10px]'>
+                <button
+                    onClick={() => navigate("/education")}
+                    className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[15px]"
+                >
+                    Back
+                </button>
+
+                <button
+                    onClick={() => navigate("/skills")}
+                    className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[15px]"
+                >
+                    Next
+                </button>
+               </div>
 
             </section>
         </div>

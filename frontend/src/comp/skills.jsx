@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const LEVELS = [
   { label: "Novice", color: "bg-red-500", pos: "0%" },
@@ -33,6 +34,8 @@ const LEVEL_COLORS = {
 
 
 function Skills({ skills, setResume }) {
+  const navigate = useNavigate();
+
 
   const addSkill = () => {
     setResume(prev => ({
@@ -152,7 +155,7 @@ function Skills({ skills, setResume }) {
                   />
                 </div>
               </div>
-          
+
             )}
             <div className="absolute left-120 mb-[25px]">
               <button
@@ -166,15 +169,35 @@ function Skills({ skills, setResume }) {
               </button>
             </div>
           </div>
-        
-  );
-})}
-<button    
-  onClick={addSkill}
-  className="text-black underline font-semibold underline-offset-4 flex justify-start mt-[20px] ml-[20px]"
->
-  + Add Skill
-</button>
+
+        );
+      })}
+      <button
+        onClick={addSkill}
+        className="text-black underline font-semibold underline-offset-4 flex justify-start mt-[20px] ml-[20px]"
+      >
+        + Add Skill
+      </button>
+
+      <div className="flex justify-between ml-[10px] mr-[10px] mt-[30px]">
+        <button
+          onClick={() => navigate("/experience")}
+          className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[15px]"
+        >
+          Back
+        </button>
+
+        <button
+          onClick={() => navigate("/addmore")}
+          className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[15px]"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

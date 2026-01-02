@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 function Education({ education, setResume }) {
+
+    const navigate = useNavigate();
 
     function handleEduChange(id, field, value) {
         setResume(prev => ({ ...prev, education: prev.education.map(edu => edu.id === id ? { ...edu, [field]: value } : edu) }))
@@ -70,7 +73,7 @@ function Education({ education, setResume }) {
                                     />
 
                                     <input className='w-[40%]'
-                                        type='text'
+                                        type="text"
                                         placeholder='  ex: 20XX-20XX'
                                         value={edu.duration}
                                         onChange={(e) => handleEduChange(edu.id, 'duration', e.target.value)}
@@ -88,19 +91,41 @@ function Education({ education, setResume }) {
                                 }}
                                 className="text-red-600 text-sm font-semibold hover:underline"
                             >
-                                <img src='/delete.png' height="20px" width="25px"/>
+                                <img src='/delete.png' height="20px" width="25px" />
                             </button>
-                            </div>
                         </div>
+                    </div>
 
 
                 ))}
-                        <button onClick={addEducation} className='mx-auto px-6 py-3 rounded-xl border-1 bg-black text-white 
+                <button onClick={addEducation} className='mx-auto px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]'>+ Add Education</button>
+
+                 
+                <div className='flex justify-between ml-[10px] mr-[10px]'>
+                    <button
+                        onClick={() => navigate("/personal")}
+                        className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[15px]"
+                    >
+                        Back
+                    </button>
+
+                    <button
+                        onClick={() => navigate("/experience")}
+                        className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
+                 duration-200 font-semibold text-[15px]"
+                    >
+                        Next
+                    </button>
+                </div>
+
 
             </div>
         </div>
     )
 }
-            export default Education
+export default Education
