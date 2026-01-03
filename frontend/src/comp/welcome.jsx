@@ -5,8 +5,8 @@ function Welcome() {
     return (
         <div className='mt-[100px]'>
             <div className='flex flex-col'>
-                <p className='flex justify-start ml-[70px] font-mono font-semibold text-[20px] text-right'>Your Resume will Preview on the</p>
-                <span className=' font-mono font-semibold text-[20px] mb-[80px] ml-[140px] italic'> - Right Side </span>
+                <p className='flex justify-start ml-[70px] font-mono font-semibold text-[20px] text-right typewriter'>Your Resume will Preview on the <span className='italic'>  - Right side </span> </p>
+
             </div>
             <button
                 onClick={() => navigate("personal")}

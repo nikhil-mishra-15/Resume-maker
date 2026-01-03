@@ -58,7 +58,7 @@ export default function MonthYearPicker({ value, onChange, placeholder }) {
                 className={`py-2 rounded-full transition
                   ${value?.startsWith(m)
                     ? "bg-blue-500 text-white"
-                    : "hover:bg-blue-100"
+                    : "hover:bg-blue-100 hover:scale-115 ease-in-out duration-300"
                   }`}
               >
                 {m}

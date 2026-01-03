@@ -1,5 +1,9 @@
 @import "tailwindcss";
+
 @layer utilities {
+  /* =====================
+     SLIDE ANIMATIONS
+     ===================== */
   @keyframes slideInLeft {
     from {
       transform: translateX(-150%);
@@ -25,7 +29,100 @@
   .animate-slideInRight {
     animation: slideInRight 2s ease-out forwards;
   }
+
+  /* =====================
+     TYPEWRITER ANIMATION
+     ===================== */
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 82%;
+    }
+  }
+
+  @keyframes blinkingCursor {
+    from {
+      border-right-color: rgba(0, 0, 0, 0.75);
+    }
+    to {
+      border-right-color: transparent;
+    }
+  }
+
+  .typewriter {
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid rgba(0, 0, 0, 0.75);
+    animation:
+      typewriter 5s steps(50) 1s both,
+      blinkingCursor 800ms steps(50) infinite;
+  }
+
+  .split-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6em;
+    color: transparent;
+    text-transform: uppercase;
+    font-family: consolas;
+  }
+
+  .split-text span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #000;
+    transition: 0.5s;
+    overflow: hidden;
+  }
+
+  /* Top half */
+  .split-text span:nth-child(1) {
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  }
+
+  .split-text:hover span:nth-child(1) {
+    transform: translateY(-18px);
+  }
+
+  /* Bottom half */
+  .split-text span:nth-child(2) {
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+  }
+
+  .split-text:hover span:nth-child(2) {
+    transform: translateY(18px);
+  }
+
+  /* Middle reveal text */
+  .split-text span:nth-child(3) {
+    top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 91%;
+    background: #ff0;
+    font-size: 0.25em;
+    font-weight: 500;
+    letter-spacing: 0.7em;
+    text-align: center;
+    padding-left: 20px;
+    margin-left: 5px;
+    transition: 0.5s;
+  }
+
+  .split-text:hover span:nth-child(3) {
+    transform: translateY(-50%) scaleY(1);
+  }
 }
+
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

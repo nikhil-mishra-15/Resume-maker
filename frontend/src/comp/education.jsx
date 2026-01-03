@@ -131,7 +131,11 @@ function Education({ education, setResume }) {
          before:bg-black
          before:transition-all
          before:duration-300
-         hover:before:h-full px-[9px]">+ Add Education</button>
+         hover:before:h-full px-[9px] ">
+         <span>+ Add Education</span>
+    
+
+         </button>
 
 
                 <div className='flex justify-between ml-[10px] mr-[10px]'>
