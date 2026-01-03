@@ -38,7 +38,7 @@
       width: 0;
     }
     to {
-      width: 82%;
+      width: 77%;
     }
   }
 
@@ -55,13 +55,13 @@
     position: relative;
     width: 24em;
     margin: 0 auto;
-    font-size: 10px;
+    font-size: 17px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid rgba(0, 0, 0, 0.75);
     animation:
-      typewriter 5s steps(50) 1s both,
+      typewriter 4s steps(50) 1s both,
       blinkingCursor 800ms steps(50) infinite;
   }
 
