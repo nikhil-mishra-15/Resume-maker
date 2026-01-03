@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 function Links() {
   const navigate = useNavigate();
   const { resume, setResume } = useOutletContext();
-  const links = resume.links;
+
+  const [open, setOpen] = useState(null); // which dropdown is open
+  const ref = useRef(null);
+
+  const SOCIALS = [
+    "facebook",
+    "twitter",
+    "linkedin",
+    "instagram",
+    "github",
+    "website",
+  ];
+
+  // close dropdown on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(null);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const updateLink = (id, field, value) => {
     setResume((prev) => ({
@@ -19,7 +41,7 @@ function Links() {
     setResume((prev) => ({
       ...prev,
       links: [
-        ...prev.links.map(link => ({ ...link, open: false })),
+        ...prev.links.map((l) => ({ ...l, open: false })),
         {
           id: crypto.randomUUID(),
           label: "",
@@ -31,66 +53,120 @@ function Links() {
   };
 
   const deleteLink = (id) => {
-    setResume(prev => ({
+    setResume((prev) => ({
       ...prev,
-      links: prev.links.filter(link => link.id !== id)
+      links: prev.links.filter((link) => link.id !== id),
     }));
   };
 
   const toggle = (id) => {
-    setResume(prev => ({
-      ...prev, links: prev.links.map(link => link.id === id ? { ...link, open: !link.open } : link)
-    }))
-  }
+    setResume((prev) => ({
+      ...prev,
+      links: prev.links.map((link) =>
+        link.id === id ? { ...link, open: !link.open } : link
+      ),
+    }));
+  };
+
   return (
-    <div>
+    <div ref={ref}>
+      {/* HEADER */}
       <div className="flex ml-[25px] gap-2 mb-[40px]">
         <img src="/social.png" width="20" />
         <p className="text-lg font-bold">Websites & Social Links</p>
       </div>
 
-      <div className="">
+      {/* LINKS LIST */}
+      <div>
         {resume.links.map((link) => (
-          <div key={link.id} className="w-[90%] rounded-lg p-4 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)]">
-
-            {/* HEADER (collapsed view) */}
-            <div onClick={() => toggle(link.id)} className="flex justify-between items-center cursor-pointer">
-              <div>
-                <p className='font-semibold'>
-                  {link.name || "(Not Specified)"}
-                </p>
-              </div>
-              <span className="text-lg">
-                {link.open ? "▲" : "▼"}
+          <div
+            key={link.id}
+            className="relative w-[80%] ml-[10px] mb-[25px]
+                       rounded-lg p-4 shadow-[0px_10px_10px_rgba(0,0,0,0.15)]"
+          >
+            {/* COLLAPSED HEADER */}
+            <div
+              onClick={() => toggle(link.id)}
+              className="flex justify-between items-center cursor-pointer"
+            >
+              <p className="font-semibold">
+                {link.label || "(Not Specified)"}
+              </p>
+              <span className="text-[23px] hover:scale-125 hover:duration-200 hover:ease-in-out">
+                {link.open ? "🙂" : "🙃"}
               </span>
             </div>
 
-            {/* LANGUAGE NAME */}
+            {/* OPEN CONTENT */}
             {link.open && (
-              <div className="flex flex-row gap-6">
-                <input
-                  type="text"
-                  placeholder=" Language"
-                  value={link.label}
-                  onChange={(e) =>
-                    updateLanguage(link.id, "label", e.target.value)
-                  }
-                  className="w-[50%] border-b outline-none py-2 pl-[15px] mt-[30px] h-[40%] rounded-lg"
-                />
+              <div className="flex flex-row gap-6 mt-[30px]">
+                {/* PLATFORM DROPDOWN */}
+                <div className="relative w-[260px]">
+                  <button
+                    onClick={() =>
+                      setOpen(open === link.id ? null : link.id)
+                    }
+                    className="w-full flex justify-between items-center
+                               px-4 py-3 bg-gray-100 rounded-xl
+                               border-b-2 border-blue-500
+                               font-medium text-left"
+                  >
+                    {link.label || "Select platform"}
+                    <svg
+                      className={`w-4 h-4 transition-transform ${open === link.id ? "rotate-180" : ""
+                        }`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
 
+                  {open === link.id && (
+                    <div
+                      className="absolute z-50 mt-2 bg-white
+                                 rounded-xl shadow-lg
+                                 max-h-[220px] overflow-y-auto"
+                    >
+                      {SOCIALS.map((label) => (
+                        <button
+                          key={label}
+                          onClick={() => {
+                            updateLink(link.id, "label", label);
+                            setOpen(null);
+                          }}
+                          className={`w-full text-left px-4 py-3 hover:bg-blue-50
+                            ${link.label === label
+                              ? "bg-blue-100 text-blue-600 font-medium"
+                              : ""
+                            }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* LINK INPUT */}
                 <input
                   type="text"
-                  placeholder=" Link"
+                  placeholder="Link"
                   value={link.address}
                   onChange={(e) =>
-                    updateLanguage(link.id, "address", e.target.value)
+                    updateLink(link.id, "address", e.target.value)
                   }
-                  className="w-[50%] border-b outline-none py-2 pl-[15px] mt-[30px] h-[40%] rounded-lg"
+                  className="w-[50%] border-b outline-none
+                             py-2 pl-[15px] rounded-lg"
                 />
               </div>
             )}
 
-            <div className="absolute left-120 mb-[25px]">
+            {/* DELETE BUTTON */}
+            <div className="absolute -right-9 mb-[25px]">
+
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -103,24 +179,35 @@ function Links() {
             </div>
           </div>
         ))}
+
+
+        {/* ADD LINK */}
+        <button
+          onClick={addLink}
+          className="ml-[10px] mt-3 relative inline-block
+                   font-semibold cursor-pointer text-black
+                   before:content-['']
+                   before:absolute before:left-0 before:top-0
+                   before:w-[3px] before:h-0 before:bg-black
+                   before:transition-all before:duration-300
+                   hover:before:h-full px-[9px]"
+        >
+          + Add link
+        </button>
       </div>
-
+      {/* BACK BUTTON */}
       <button
-        onClick={addLink}
-        className="ml-[25px] mt-6 px-4 py-2 bg-black text-white rounded-md"
+        onClick={() => navigate("/addmore")}
+        className="flex justify-start ml-[10px] mt-[30px]
+                   px-6 py-3 rounded-xl bg-black text-white
+                   hover:bg-white hover:text-black
+                   transition-all shadow-[0_2px_6px_rgba(0,0,0,0.95)]
+                   font-semibold text-[15px]"
       >
-        + Add link
+        ← Back
       </button>
-
-          
-<button onClick={() => navigate("/addmore")} className="flex justify-start ml-[10px] mt-[30px] px-6 py-3 rounded-xl border-1 bg-black text-white 
-hover:bg-white hover:text-black hover:border-white transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
- duration-200 font-semibold text-[15px]">← Back</button>
     </div>
-
-
-
-  )
+  );
 }
 
-export default Links
+export default Links;

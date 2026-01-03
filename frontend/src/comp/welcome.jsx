@@ -3,22 +3,18 @@ import { useNavigate } from "react-router-dom";
 function Welcome() {
     const navigate = useNavigate();
     return (
-        <div className='mt-[150px]'>
+        <div className='mt-[100px]'>
             <div className='flex flex-col'>
-                <p><span className='text-[25px] font-bold font-serif'>Welcome to myResume-maker</span></p>
-                <p className='font-mono self-end pr-[117px] text-[15px]'>crafted by: Nikhil Mishra </p>
+                <p className='flex justify-start ml-[70px] font-mono font-semibold text-[20px] text-right'>Your Resume will Preview on the</p>
+                <span className=' font-mono font-semibold text-[20px] mb-[80px] ml-[140px] italic'> - Right Side </span>
             </div>
-            <p className='font-sans pt-[20px]'>turns your experience into impact.</p>
-            <p className='font-sans'>Build sleek, professional resumes with a developer’s precision.</p>
-
-
             <button
-                onClick={() => navigate("/personal")}
+                onClick={() => navigate("personal")}
                 className="flex justify-end mt-[50px] ml-[15px] px-6 py-3 rounded-xl border-1 bg-black text-white
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"
             >
-                Next
+                Let's start
             </button>
         </div>
     )

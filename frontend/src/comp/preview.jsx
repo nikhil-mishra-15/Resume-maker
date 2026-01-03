@@ -1,7 +1,24 @@
 import React from 'react'
 
 function Preview({ resume }) {
-  const { personal, education, experience, skills } = resume;
+
+  const SOCIAL_ICONS = {
+    facebook: "/face.png",
+    twitter: "/twitter.jpg",
+    linkedin: "/linkedin.png",
+    instagram: "/instagram.avif",
+    github: "/github.png",
+    website: "/website.png",
+  };
+  
+  const normalize = (text="")=>{
+    text = text.trim().toLowerCase()
+  }  
+
+  const languages = resume.languages;
+  const hasCourse = resume.courses.some(course =>
+    course.name.trim() !== "" || course.institution.trim() !== "" || course.startdate.trim() !== "" || course.enddate.trim() !== ""
+  );
 
   const hasEducation = resume.education.some(edu =>
     edu.institute.trim() !== "" ||
@@ -9,15 +26,44 @@ function Preview({ resume }) {
     edu.duration.trim() !== ""
   );
 
+  const hasLang = resume.languages.some(lang=>
+    lang.name.trim() !==""
+    )
+
   const haswork = resume.experience.some(work =>
     work.job_title.trim() !== "" ||
     work.company.trim() !== ""
   );
+ 
+  const haslink = resume.links.some(link=>
+    link.label.trim() !=="" || link.label.trim()!==""
+    )
 
   const hasskill = resume.skills.some(skill =>
     skill.name.trim() !== ""
   )
 
+  const LEVELS1 = [
+    "Native speaker",
+    "Highly proficient",
+    "Very good command",
+    "Good working knowledge",
+    "B2",
+    "B1",
+    "A2",
+  ];
+
+  const LEVELS2 = {
+    0: "Native speaker",
+    1: "Highly proficient",
+    2: "Very good command",
+    3: "Good working knowledge",
+    4: "B2",
+    5: "B1",
+    6: "A2",
+  };
+  
+  
   const LEVELS = [
     { label: "Novice", color: "bg-red-500", pos: "0%" },
     { label: "Beginner", color: "bg-orange-500", pos: "20%" },
@@ -51,14 +97,28 @@ function Preview({ resume }) {
 
 
   return (
-    <div>
+    <div id="resume-preview" >
       <section className='flex flex-col gap-3'>
-        <div className='flex flex-col relative'>
-        <h2 className='text-4xl py-auto'>{resume.personal.first_name}</h2>
-        <p className='font-bold text-sm text-gray-500 mt-[3px]'>{resume.personal.position}</p>
+        <div className='flex flex-col relative text-center'>
+          <h2 className='text-4xl py-auto'>{resume.personal.first_name}</h2>
+          <p className='font-bold text-m text-gray-500 mt-[1px] mb-[5px]'>{resume.personal.position}</p>
+          {haslink && (
+            <div className='flex flex-row gap-2 w-[80%] mx-auto justify-center mt-[13px]'>
+            {resume.links.map(link=>(
+              <div key={link.id} className=''>
+              {link.label && (
+                <a href={link.address} className='flex flex-row gap-1 place-content-center'>
+                <img src={SOCIAL_ICONS[link.label]} height="5px" width="15px"/>
+                <p className='text-gray-700 text-[12px]'>{link.label}</p>
+                </a>
+              )}
+              </div>
+            ))}
+            </div>
+          )}
         </div>
 
-        <div className='flex flex-row justify-between text-[12px] text-gray-500 font-semibold pl-[10px] pr-[10px] mt-[10px]'>
+        <div className='flex flex-row justify-between text-[12px] text-gray-500 font-semibold pl-[10px] pr-[10px] mt-[20px]'>
           <p >{resume.personal.phone}</p>
           <p>{resume.personal.email}</p>
           <p>{resume.personal.address}</p>
@@ -67,8 +127,8 @@ function Preview({ resume }) {
         {resume.personal.address && <hr className='bg-white mx-6' />}
         {resume.personal.about && (
           <div >
-            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center'>
-              <p className='text-sm font-bold ml-[20px] flex flex-start underline underline-offset-6 pb-[5px]'>PROFESSIONAL SUMMARY</p>
+            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center' style={{ backgroundColor: "#f5f5f5" }}>
+              <p className='text-sm font-bold ml-[20px] flex flex-start underline underline-offset-6 pb-[5px] tracking-[2px]'>PROFESSIONAL SUMMARY</p>
             </div>
             <p className="pl-[10px] text-[12px] mx-auto mt-[22px] leading-relaxed text-black whitespace-pre-wrap max-w-[90%] text-left">
               {resume.personal.about}
@@ -82,7 +142,7 @@ function Preview({ resume }) {
             <div className="mt-2">
 
               <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center'>
-                <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6">
+                <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
                   EDUCATION
                 </h2>
               </div>
@@ -115,7 +175,7 @@ function Preview({ resume }) {
             <div className="mt-6">
 
               <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center'>
-                <h2 className="text-sm font-bold  ml-[20px] flex flex-start pb-[5px] underline underline-offset-6">
+                <h2 className="text-sm font-bold  ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
                   EMPLOYMENT HISTORY
                 </h2>
               </div>
@@ -148,40 +208,107 @@ function Preview({ resume }) {
           {hasskill && (
             <div className="mt-6">
               <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center'>
-                <h2 className="text-sm font-bold  ml-[20px] flex flex-start pb-[5px] underline underline-offset-6">
+                <h2 className="text-sm font-bold  ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
                   SKILLS
                 </h2>
               </div>
 
               <div className="text-sm space-y-2 grid grid-cols-2 gap-x-10 py-2">
-                {resume.skills.map(skill=>
-                  skill.name.trim() !== "" ?  (
+                {resume.skills.map(skill =>
+                  skill.name.trim() !== "" ? (
                     <div key={skill.id}>
-                     <div className='flex flex-row pl-[10px] pt-[10px] pr-[10px]'>
-                     {skill.name && (<span className="text-sm pr-[5px]">✿</span>)}
-                     {skill.name && (<p>{skill.name}</p>)}
-                     {skill.level && (<span className="flex-grow border-b border-dotted border-gray-400 mb-[2px]"></span>)}
-                     {skill.level && (<p className='font-semibold italic'>{LEVELS[skill.level].label}</p>)}
-                     </div>
+                      <div className='flex flex-row pl-[10px] pt-[10px] pr-[10px]'>
+                        {skill.name && (<span className="text-sm pr-[5px]">✿</span>)}
+                        {skill.name && (<p>{skill.name}</p>)}
+                        {skill.level && (<span className="flex-grow border-b border-dotted border-gray-400 mb-[2px]"></span>)}
+                        {skill.level && (<p className='font-semibold italic'>{LEVELS[skill.level].label}</p>)}
+                      </div>
                     </div>
-                
-
                   ) : null
                 )}
-          
               </div>
             </div>
-        
+          )}
+        </section>
 
+        <section>
+          {hasCourse && (
+            <div className="mt-2">
+
+              <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center'>
+                <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
+                  COURSES
+                </h2>
+              </div>
+
+              <div className="text-sm space-y-2">
+                {resume.courses.map(course =>
+                  course.name || course.institution || course.startdate || course.enddate ? (
+                    <div key={course.id}>
+                      <div className='flex flex-row gap-1 ml-[10px] mt-[20px]'>
+                        {course.name && (<span className="text-sm pr-[5px]">✿</span>)}
+
+                        <div className='flex flex-col'>
+                          {course.name && (<p className="font-semibold">{course.name}</p>)}
+                          {course.institution && <p className='flex justify-start text-gray-500 italic'>{course.institution}</p>}
+
+                        </div>
+                        {course.startdate && (<span className="flex-grow border-b border-dotted mb-[22px] border-gray-800 mb-[2px]"></span>)}
+                        <div className='flex flex-row mr-[10px]'>
+                          {course.startdate && <p>{course.startdate}</p>}
+                          {course.enddate && <p>-</p>}
+                          {course.enddate && <p>{course.enddate}</p>}
+                        </div>
+                      </div>
+
+                    </div>
+                  ) : null
+                )}
+              </div>
+            </div>
+          )}
+        </section>
+
+
+        <section>
+          {resume.hobbies && (
+
+            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center mt-2'>
+              <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
+                HOBBIES
+              </h2>
+            </div>
 
           )}
-
-
-
-
-
+          <p className='mt-2 italic flex flex-start pl-[15px] mb-[7px]'>{resume.hobbies}</p>
 
         </section>
+
+
+        <section>
+          {hasLang && (
+             <div>
+            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center mt-2'>
+              <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
+                LANGUAGES
+              </h2>
+            </div>
+            
+            <div className="text-sm grid grid-cols-2 mt-[17px]">
+            {languages.map(lang=>(
+              <div key={lang.id} className='flex flex-row pl-[18px] pr-[18px] pb-[5px]'>
+                 <ul className='list-disc pl-[5px]'>
+                   <li>{lang.name}</li>
+                 </ul>
+                   {lang.level && (<span className="flex-grow border-b border-dotted border-gray-700 mb-[2px]"></span>)}
+                   <p className='font-semibold italic underline text-[10px] mt-[4px]'>{lang.level}</p>
+              </div>
+            ))}
+            </div>
+            </div>
+          )}
+        </section>
+
       </section>
 
 

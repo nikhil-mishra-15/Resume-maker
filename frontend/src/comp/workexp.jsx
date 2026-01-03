@@ -39,8 +39,8 @@ function Workexp({ experience, setResume }) {
                                     {work.company || "(Not Specified)"}
                                 </p>
                             </div>
-                            <span className="text-lg">
-                                {work.open ? "▲" : "▼"}
+                            <span className="text-[23px] hover:scale-125 hover:duration-200 hover:ease-in-out">
+                                {work.open ? "🙂" : "🙃"}
                             </span>
                         </div>
                         {work.open && (
@@ -100,29 +100,36 @@ function Workexp({ experience, setResume }) {
                 ))
                 }
 
-                <button onClick={addWork} className='mx-auto px-6 py-3 rounded-xl border-1 bg-black text-white 
-               hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
-                 duration-200 font-semibold text-[15px]'>+ Add one more Employment history</button>
+                <button onClick={addWork} className="mx-auto relative inline-block font-semibold cursor-pointer text-black before:content-['']
+         before:absolute
+         before:left-0
+         before:top-0
+         before:w-[3px]
+         before:h-0
+         before:bg-black
+         before:transition-all
+         before:duration-300
+         hover:before:h-full px-[9px] mt-[10px] mr-[190px]">+ Add Employment history</button>
 
-               <div className='flex justify-between ml-[10px] mr-[10px]'>
-                <button
-                    onClick={() => navigate("/education")}
-                    className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+                <div className='flex justify-between ml-[10px] mr-[10px]'>
+                    <button
+                        onClick={() => navigate("../education")}
+                        className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"
-                >
-                    Back
-                </button>
+                    >
+                        Back
+                    </button>
 
-                <button
-                    onClick={() => navigate("/skills")}
-                    className="px-6 py-3 rounded-xl border-1 bg-black text-white 
+                    <button
+                        onClick={() => navigate("../skills")}
+                        className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"
-                >
-                    Next
-                </button>
-               </div>
+                    >
+                        Next
+                    </button>
+                </div>
 
             </section>
         </div>

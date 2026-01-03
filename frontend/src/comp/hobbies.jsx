@@ -20,7 +20,12 @@ function Hobbies() {
           className="w-[80%] h-[120px] p-3 border rounded-md resize-none ml-[20px]"
           placeholder="Enter your hobbies"
           value={hobbies}
-          onChange={(e) => setResume(e.target.value)}
+          onChange={(e) =>
+            setResume(prev => ({
+              ...prev,
+              hobbies: e.target.value
+            }))
+          }
         />
 
 

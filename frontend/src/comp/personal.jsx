@@ -70,7 +70,7 @@ function Personal({ personal, setResume }) {
 
         <div className='flex justify-between ml-[10px] mr-[10px] mt-[30px]'>
                 <button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("../")}
                     className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"
@@ -79,7 +79,7 @@ function Personal({ personal, setResume }) {
                 </button>
 
                 <button
-                    onClick={() => navigate("/education")}
+                    onClick={() => navigate("../education")}
                     className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"

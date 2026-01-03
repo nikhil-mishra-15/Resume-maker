@@ -10,7 +10,7 @@ function Addmore({resume , setResume}) {
   const location = useLocation();
 
   // true only on /addmore
-  const isRoot = location.pathname === "/addmore";
+  const isRoot = location.pathname === "/inputform/addmore";
 
   return (
     <div>
@@ -44,7 +44,7 @@ function Addmore({resume , setResume}) {
       
       <div className="flex justify-between ml-[10px] mr-[10px] mt-[70px]">
         <button
-          onClick={() => navigate("/skills")}
+          onClick={() => navigate("../skills")}
           className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"
@@ -53,7 +53,7 @@ function Addmore({resume , setResume}) {
         </button>
 
         <button
-          onClick={() => navigate("/addmore")}
+          onClick={() => navigate("../download")}
           className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"

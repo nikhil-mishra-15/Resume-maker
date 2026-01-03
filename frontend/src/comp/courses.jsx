@@ -32,8 +32,8 @@ function Courses() {
     <div>
       <div className='flex flex-col gap-8'>
         <div className="flex flex-row ml-[25px] gap-2">
-        <img src="/courses.png" width="20" />
-        <p><span className='flex justify-start text-lg font-bold'>Courses</span></p>
+          <img src="/courses.png" width="20" />
+          <p><span className='flex justify-start text-lg font-bold'>Courses</span></p>
 
         </div>
 
@@ -47,8 +47,8 @@ function Courses() {
                   {course.name || course.institution || "(Not Specified)"}
                 </p>
               </div>
-              <span className="text-lg">
-                {course.open ? "▲" : "▼"}
+              <span className="text-[23px] hover:scale-125 hover:duration-200 hover:ease-in-out">
+                {course.open ? "🙂" : "🙃"}
               </span>
             </div>
 
@@ -67,26 +67,26 @@ function Courses() {
                     type='text'
                     placeholder='  Institution'
                     value={courses.institution}
-                    onChange={(e) => handleCourseChange(edu.id, 'institution', e.target.value)}
+                    onChange={(e) => handleCourseChange(course.id, 'institution', e.target.value)}
                   />
                   <div className="flex flex-row w-[200%] mt-[20px]">
                     <div className="flex flex-col">
-                    <label className="w-[50%]">Start Date:</label>
-                    <input className='w-[75%] px-[20px] py-[5px] mt-[5px]'
-                      type="text"
-                      placeholder='ex: 20XX-20XX'
-                      value={course.startdate}
-                      onChange={(e) => handleCourseChange(edu.id, 'startdate', e.target.value)}
-                    />
+                      <label className="w-[50%]">Start Date:</label>
+                      <input className='w-[75%] px-[20px] py-[5px] mt-[5px]'
+                        type="text"
+                        placeholder='ex: Jan-20XX'
+                        value={course.startdate}
+                        onChange={(e) => handleCourseChange(course.id, 'startdate', e.target.value)}
+                      />
                     </div>
                     <div className="flex flex-col">
-                    <label className="w-[40%]">End Date:</label>
-                    <input className='w-[75%] px-[20px] py-[5px] mt-[5px]'
-                      type="text"
-                      placeholder='ex: 20XX-20XX'
-                      value={course.startdate}
-                      onChange={(e) => handleCourseChange(edu.id, 'startdate', e.target.value)}
-                    />
+                      <label className="w-[40%]">End Date:</label>
+                      <input className='w-[75%] px-[20px] py-[5px] mt-[5px]'
+                        type="text"
+                        placeholder='ex: Nov-20XX'
+                        value={course.enddate}
+                        onChange={(e) => handleCourseChange(course.id, 'enddate', e.target.value)}
+                      />
                     </div>
                   </div>
                 </div>
@@ -108,9 +108,16 @@ function Courses() {
 
 
         ))}
-        <button onClick={addcourses} className='mx-auto px-6 py-3 rounded-xl border-1 bg-white text-black 
-hover:bg-black hover:text-white hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
- duration-200 font-semibold text-[15px]'>+ Add Course</button>
+        <button onClick={addcourses} className="mx-auto mr-[240px] relative inline-block font-semibold cursor-pointer text-black before:content-['']
+         before:absolute
+         before:left-0
+         before:top-0
+         before:w-[3px]
+         before:h-0
+         before:bg-black
+         before:transition-all
+         before:duration-300
+         hover:before:h-full px-[9px]">+ Add Course</button>
 
 
 

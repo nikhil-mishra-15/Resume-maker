@@ -93,8 +93,8 @@ function Skills({ skills, setResume }) {
                 </p>
               </div>
 
-              <span className="text-lg">
-                {skill.open ? "▲" : "▼"}
+              <span className="text-[23px] hover:scale-125 hover:duration-200 hover:ease-in-out">
+                {skill.open ? "🙂" : "🙃"}
               </span>
             </div>
 
@@ -174,14 +174,23 @@ function Skills({ skills, setResume }) {
       })}
       <button
         onClick={addSkill}
-        className="text-black underline font-semibold underline-offset-4 flex justify-start mt-[20px] ml-[20px]"
+        className="relative inline-block font-semibold cursor-pointer text-black before:content-['']
+         before:absolute
+         before:left-0
+         before:top-0
+         before:w-[3px]
+         before:h-0
+         before:bg-black
+         before:transition-all
+         before:duration-300
+         hover:before:h-full px-[9px] mt-[30px] mr-[70px] self-start"
       >
         + Add Skill
       </button>
 
       <div className="flex justify-between ml-[10px] mr-[10px] mt-[30px]">
         <button
-          onClick={() => navigate("/experience")}
+          onClick={() => navigate("../experience")}
           className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"
@@ -190,7 +199,7 @@ function Skills({ skills, setResume }) {
         </button>
 
         <button
-          onClick={() => navigate("/addmore")}
+          onClick={() => navigate("../addmore")}
           className="px-6 py-3 rounded-xl border-1 bg-black text-white 
                hover:bg-white hover:text-black hover:border-black transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
                  duration-200 font-semibold text-[15px]"

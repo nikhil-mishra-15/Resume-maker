@@ -42,7 +42,7 @@ function Languages() {
     setResume((prev) => ({
       ...prev,
       languages: [
-        ...prev.languages,
+        ...prev.languages.map((lang) => ({ ...lang, open: false })),
         {
           id: crypto.randomUUID(),
           name: "",
@@ -70,8 +70,8 @@ function Languages() {
 
       {/* LANGUAGE LIST */}
       <div className="">
-        {resume.languages.map((lang) => (
-          <div key={lang.id} className="w-[90%] rounded-lg p-4 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)]">
+        {resume.languages.map((lang, index) => (
+          <div key={lang.id} className="w-[90%] rounded-lg p-4 w-[80%] ml-[10px] shadow-[0px_10px_10px_rgba(0,0,0,0.15)] mb-[20px]">
 
             {/* HEADER (collapsed view) */}
             <div onClick={() => toggle(lang.id)} className="flex justify-between items-center cursor-pointer">
@@ -80,8 +80,8 @@ function Languages() {
                   {lang.name || "(Not Specified)"}
                 </p>
               </div>
-              <span className="text-lg">
-                {lang.open ? "▲" : "▼"}
+              <span className="text-[23px] hover:scale-125 hover:duration-200 hover:ease-in-out">
+                {lang.open ? "🙂" : "🙃"}
               </span>
             </div>
 
@@ -125,7 +125,7 @@ function Languages() {
                   {open === lang.id && (
                     <div
                       className="absolute mt-2 bg-white rounded-xl shadow-lg
-                             max-h-[220px] overflow-y-auto"
+                             max-h-[220px] overflow-y-auto z-50"
                     >
                       {LEVELS.map((level) => (
                         <button
@@ -146,24 +146,45 @@ function Languages() {
                     </div>
                   )}
                 </div>
-                </div>
-               )}
-       </div>
+              </div>
+            )}
+
+            <div className="absolute left-133 mb-[25px]">
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteLink(link.id);
+                }}
+                className="text-red-600 text-sm font-semibold hover:underline"
+              >
+                <img src='/delete.png' height="20px" width="25px" />
+              </button>
+            </div>
+          </div>
+
         ))}
       </div>
 
       {/* ADD LANGUAGE */}
       <button
         onClick={addLanguage}
-        className="ml-[25px] mt-6 px-6 py-3 rounded-xl border-1 bg-black text-white 
-hover:bg-white hover:text-black hover:border-white transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
- duration-200 font-semibold text-[15px]"
+        className="mt-9 relative inline-block font-semibold cursor-pointer text-black before:content-['']
+         before:absolute
+         before:left-0
+         before:top-0
+         before:w-[3px]
+         before:h-0
+         before:bg-black
+         before:transition-all
+         before:duration-300
+         hover:before:h-full px-[9px]"
       >
         + Add Language
       </button>
 
-          
-<button onClick={() => navigate("/addmore")} className="flex justify-start ml-[10px] mt-[30px] px-6 py-3 rounded-xl border-1 bg-black text-white 
+
+      <button onClick={() => navigate("/addmore")} className="flex justify-start ml-[10px] mt-[30px] px-6 py-3 rounded-xl border-1 bg-black text-white 
 hover:bg-white hover:text-black hover:border-white transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
  duration-200 font-semibold text-[15px]">← Back</button>
     </div>
