@@ -1,4 +1,31 @@
 @import "tailwindcss";
+@layer utilities {
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-150%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(150%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 2s ease-out forwards;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 2s ease-out forwards;
+  }
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

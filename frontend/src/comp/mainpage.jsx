@@ -11,7 +11,7 @@ function Mainpage() {
 
     return (
         <div>
-            <div className='w-[1000px] mt-[60px]'>
+            <div className='w-[1000px] mt-[60px] mr-[100px]'>
                 <div className='flex flex-col text-black items-center'>
                     <p><span className='text-[35px] font-semibold font-serif'>Welcome to</span></p>
 
@@ -23,10 +23,10 @@ function Mainpage() {
                             <p className='font-mono top-3 pl-[400px] text-[20px]'>crafted by: Nikhil Mishra </p>
                     </div>
                     <div className='overflow-hidden'>
-                    <p className='font-sans mt-[50px] text-black text-[20px] italic overflow-hidden animate-slideInLeft'>turns your experience into impact.</p>
+                    <p className='font-sans mt-[50px] text-black text-[20px] italic animate-slideInRight'>turns your experience into impact.</p>
+                   
+                    <p className='font-sans text-black text-[20px] italic animate-slideInLeft'>Build sleek, professional resumes with a developer’s precision.</p>
                     </div>
-                    <p className='font-sans text-black text-[20px] italic'>Build sleek, professional resumes with a developer’s precision.</p>
-
 
                     <button
                         onClick={() => navigate("/inputform")}
