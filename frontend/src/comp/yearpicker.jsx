@@ -37,9 +37,13 @@ export default function YearPicker({ value, onChange, placeholder = "YYYY" }) {
             >
               ‹
             </button>
-
-            <span className="text-lg font-semibold">{year}</span>
-
+             
+            <div className="border rounded-[10px] w-[60px] hover:cursor-pointer hover:scale-115 ease-in-out duration-300">
+            <p  onClick={() => {
+              onChange(year);
+              setOpen(false);
+            }} className="text-lg font-semibold">{year}</p>
+            </div>
             <button
               onClick={() => setYear(y => y + 1)}
               className="text-xl text-gray-500 hover:text-black"
@@ -53,10 +57,7 @@ export default function YearPicker({ value, onChange, placeholder = "YYYY" }) {
               onChange(year);
               setOpen(false);
             }}
-            className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md
-                       hover:bg-blue-600 transition"
           >
-            Select Year
           </button>
         </div>
       )}
