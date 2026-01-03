@@ -74,6 +74,10 @@ function Links() {
       <div className="flex ml-[25px] gap-2 mb-[40px]">
         <img src="/social.png" width="20" />
         <p className="text-lg font-bold">Websites & Social Links</p>
+
+      </div>
+      <div>
+        <p className="flex justify-start ml-[20px] text-[13px] font-medium mb-[10px]">Add minimum 3 for better layout</p>
       </div>
 
       {/* LINKS LIST */}
@@ -197,7 +201,7 @@ function Links() {
       </div>
       {/* BACK BUTTON */}
       <button
-        onClick={() => navigate("/addmore")}
+        onClick={() => navigate("/inputform/addmore")}
         className="flex justify-start ml-[10px] mt-[30px]
                    px-6 py-3 rounded-xl bg-black text-white
                    hover:bg-white hover:text-black

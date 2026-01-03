@@ -184,7 +184,7 @@ function Languages() {
       </button>
 
 
-      <button onClick={() => navigate("/addmore")} className="flex justify-start ml-[10px] mt-[30px] px-6 py-3 rounded-xl border-1 bg-black text-white 
+      <button onClick={() => navigate("/inputform/addmore")} className="flex justify-start ml-[10px] mt-[30px] px-6 py-3 rounded-xl border-1 bg-black text-white 
 hover:bg-white hover:text-black hover:border-white transition-all  shadow-[0_2px_6px_rgba(0,0,0,0.95)] 
  duration-200 font-semibold text-[15px]">← Back</button>
     </div>
