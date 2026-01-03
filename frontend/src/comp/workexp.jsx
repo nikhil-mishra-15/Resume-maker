@@ -48,35 +48,35 @@ function Workexp({ experience, setResume }) {
                                 <div className='grid grid-cols-2 gap-2 w-[100%] pt-[10px]'>
                                     <input className='mb-[10px]'
                                         type='text'
-                                        placeholder='  Job Title'
+                                        placeholder='Job Title'
                                         value={work.job_title}
                                         onChange={(e) => handleworkchange(work.id, 'job_title', e.target.value)}
                                     />
 
                                     <input className='mb-[10px]'
                                         type='text'
-                                        placeholder='  Company'
+                                        placeholder='Company'
                                         value={work.company}
                                         onChange={(e) => handleworkchange(work.id, 'company', e.target.value)}
                                     />
 
                                     <input className=''
                                         type='text'
-                                        placeholder='  ex: 2 years'
+                                        placeholder='ex: 2 years'
                                         value={work.duration}
                                         onChange={(e) => handleworkchange(work.id, 'duration', e.target.value)}
                                     />
 
                                     <input className=''
                                         type='text'
-                                        placeholder='  City'
+                                        placeholder='City'
                                         value={work.city}
                                         onChange={(e) => handleworkchange(work.id, 'city', e.target.value)}
                                     />
 
                                     <input className='mt-[10px]'
                                         type='text'
-                                        placeholder='  Description'
+                                        placeholder='Description'
                                         value={work.description}
                                         onChange={(e) => handleworkchange(work.id, 'description', e.target.value)}
                                     />

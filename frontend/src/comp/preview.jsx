@@ -10,10 +10,10 @@ function Preview({ resume }) {
     github: "/github.png",
     website: "/website.png",
   };
-  
-  const normalize = (text="")=>{
+
+  const normalize = (text = "") => {
     text = text.trim().toLowerCase()
-  }  
+  }
 
   const languages = resume.languages;
   const hasCourse = resume.courses.some(course =>
@@ -26,20 +26,20 @@ function Preview({ resume }) {
     edu.startyear !== null ||
     edu.endyear !== null
   );
-  
 
-  const hasLang = resume.languages.some(lang=>
-    lang.name.trim() !==""
-    );
 
-  const haswork = resume.experience.some(work=>
+  const hasLang = resume.languages.some(lang =>
+    lang.name.trim() !== ""
+  );
+
+  const haswork = resume.experience.some(work =>
     work.job_title.trim() !== "" ||
     work.company.trim() !== ""
   );
- 
-  const haslink = resume.links.some(link=>
-    link.label.trim() !=="" || link.label.trim()!==""
-    )
+
+  const haslink = resume.links.some(link =>
+    link.label.trim() !== "" || link.label.trim() !== ""
+  )
 
   const hasskill = resume.skills.some(skill =>
     skill.name.trim() !== ""
@@ -64,8 +64,8 @@ function Preview({ resume }) {
     5: "B1",
     6: "A2",
   };
-  
-  
+
+
   const LEVELS = [
     { label: "Novice", color: "bg-red-500", pos: "0%" },
     { label: "Beginner", color: "bg-orange-500", pos: "20%" },
@@ -106,18 +106,18 @@ function Preview({ resume }) {
           <p className='font-bold text-m text-gray-500 mt-[1px] mb-[5px]'>{resume.personal.position}</p>
           {haslink && (
             <div className='flex flex-row gap-2 w-[80%] mx-auto justify-center mt-[13px]'>
-            {resume.links.map(link=>(
-              <div key={link.id} className=''>
-              {link.label && (
-                <a href={ link.address.startsWith("http")
-        ? link.address
-        : `https://${link.address}`} className='flex flex-row gap-1 place-content-center'>
-                <img src={SOCIAL_ICONS[link.label]} height="5px" width="15px"/>
-                <p className='text-gray-700 text-[12px]'>{link.label}</p>
-                </a>
-              )}
-              </div>
-            ))}
+              {resume.links.map(link => (
+                <div key={link.id} className=''>
+                  {link.label && (
+                    <a href={link.address.startsWith("http")
+                      ? link.address
+                      : `https://${link.address}`} className='flex flex-row gap-1 place-content-center'>
+                      <img src={SOCIAL_ICONS[link.label]} height="5px" width="15px" />
+                      <p className='text-gray-700 text-[12px]'>{link.label}</p>
+                    </a>
+                  )}
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -162,10 +162,10 @@ function Preview({ resume }) {
                         {edu.institute && <p>|</p>}
                         {edu.startyear && (
                           <div className='flex flex-row'>
-                          <p className="text-gray-500">{edu.startyear}</p>
-                          {edu.endyear && <p>-</p>}
-                          <p className='text-gray-500'>{edu.endyear}</p>
-                         </div>
+                            <p className="text-gray-500">{edu.startyear}</p>
+                            {edu.endyear && <p>-</p>}
+                            <p className='text-gray-500'>{edu.endyear}</p>
+                          </div>
                         )}
                       </div>
                       {edu.degree && <p className='flex flex-start ml-[30px]'>{edu.degree}</p>}
@@ -191,23 +191,42 @@ function Preview({ resume }) {
               <div className="text-sm space-y-2">
                 {resume.experience.map(work =>
                   work.job_title || work.company || work.city || work.duration || work.description ? (
-                    <div key={work.id} className='flex flex-row justify-between relative'>
-                      <div className='flex flex-row gap-1 mx-[10px] ml-[20px] my-[8px]'>
-                        {work.job_title && (<span className="text-sm">✿</span>)}
-                        {work.job_title && (<p className='font-semibold'>{work.job_title}</p>)}
-                        {work.job_title && <p className='font-bold'>,</p>}
-                        {work.company && (<p className='font-semibold'>{work.company}</p>)}
+
+
+                    <div key={work.id} className="mx-[10px] ml-[20px] my-[8px]">
+
+                      {/* TOP ROW */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex gap-1">
+                          {work.job_title && <span>✿</span>}
+                          {work.job_title && <p className="font-semibold">{work.job_title}</p>}
+                          {work.company && <p className="font-semibold">, {work.company}</p>}
+                        </div>
+ 
+                        {work.duration && (
+                            <span className="block flex-grow border-b border-dotted border-gray-800 mt-[13px]"></span>
+                          )}
+                        <div className="text-right text-sm">
+                        
+                          {work.duration && <p className='pt-[13px]'>{work.duration}</p>}
+                          {work.city && <p className="text-[12px]">{work.city}</p>}
+                        </div>
                       </div>
-                      {work.duration && (<span className="flex-grow border-b border-dotted border-gray-400 mb-[12px]"></span>)}
-                      <div className='pr-[15px] pt-[5px]'>
-                        {work.duration && (<p>{work.duration}</p>)}
-                        {work.city && (<p className='text-[12px] absolute right-4'>{work.city}</p>)}
-                      </div>
+
+                      {/* DESCRIPTION (FULL WIDTH) */}
+                      {work.description && (
+                        <p className="text-black text-sm italic leading-relaxed text-left">
+                          {work.description}
+                        </p>
+                      )}
+
+
 
                     </div>
                   ) : null
                 )}
               </div>
+
             </div>
           )}
 
@@ -295,24 +314,24 @@ function Preview({ resume }) {
 
         <section>
           {hasLang && (
-             <div>
-            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center mt-2'>
-              <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
-                LANGUAGES
-              </h2>
-            </div>
-            
-            <div className="text-sm grid grid-cols-2 mt-[17px]">
-            {languages.map(lang=>(
-              <div key={lang.id} className='flex flex-row pl-[18px] pr-[18px] pb-[5px]'>
-                 <ul className='list-disc pl-[5px]'>
-                   <li>{lang.name}</li>
-                 </ul>
-                   {lang.level && (<span className="flex-grow border-b border-dotted border-gray-700 mb-[2px]"></span>)}
-                   <p className='font-semibold italic underline text-[10px] mt-[4px]'>{lang.level}</p>
+            <div>
+              <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center mt-2'>
+                <h2 className="text-sm font-bold ml-[20px] flex flex-start pb-[5px] underline underline-offset-6 tracking-[2px]">
+                  LANGUAGES
+                </h2>
               </div>
-            ))}
-            </div>
+
+              <div className="text-sm grid grid-cols-2 mt-[17px]">
+                {languages.map(lang => (
+                  <div key={lang.id} className='flex flex-row pl-[18px] pr-[18px] pb-[5px]'>
+                    <ul className='list-disc pl-[5px]'>
+                      <li>{lang.name}</li>
+                    </ul>
+                    {lang.level && (<span className="flex-grow border-b border-dotted border-gray-700 mb-[2px]"></span>)}
+                    <p className='font-semibold italic underline text-[10px] mt-[4px]'>{lang.level}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </section>

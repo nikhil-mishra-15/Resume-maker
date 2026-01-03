@@ -37,7 +37,7 @@ function Inputform() {
         job_title: "",
         company: "",
         duration: "",
-        role:"",
+        city:"",
         description:"",
         open: true
       }
