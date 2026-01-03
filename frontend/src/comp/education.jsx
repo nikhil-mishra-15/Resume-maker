@@ -1,11 +1,19 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-
+import YearPicker from './yearpicker';
 function Education({ education, setResume }) {
 
     const [active, setActive] = useState(false);
 
+    
+    const hasEducation = education.some(edu =>
+        edu.institute.trim() !== "" ||
+        edu.degree.trim() !== "" ||
+        edu.startyear !== null ||
+        edu.endyear !== null
+      );
+      
     const navigate = useNavigate();
 
     function handleEduChange(id, field, value) {
@@ -13,14 +21,10 @@ function Education({ education, setResume }) {
     };
 
     const addEducation = () => {
-        setResume(prev => ({ ...prev, education: [...prev.education.map(edu => ({ ...edu, open: false })), { id: crypto.randomUUID(), institute: "", degree: "", duration: "", open: true }] }))
+        setResume(prev => ({ ...prev, education: [...prev.education.map(edu => ({ ...edu, open: false })), { id: crypto.randomUUID(), institute: "", degree: "", startyear: "", endyear: "", open: true }] }))
     };
 
-    const hasEducation = education.some(edu =>
-        edu.institute.trim() !== "" ||
-        edu.degree.trim() !== "" ||
-        edu.duration.trim() !== ""
-    );
+  
 
     const toggleedu = (id) => {
         setResume(prev => ({
@@ -53,36 +57,53 @@ function Education({ education, setResume }) {
                                 </p>
                             </div>
                             <span className="text-[23px] hover:scale-125 hover:duration-200 hover:ease-in-out">
-                                {edu.open ? "🙂": "🙃"}
+                                {edu.open ? "🙂" : "🙃"}
                             </span>
                         </div>
 
                         {/* BODY (expanded view) */}
                         {edu.open && (
                             <div className="space-y-6 mt-5 ">
-                                <div className='flex justify-around gap-2'>
+                               
+                                 <div className='flex justify-around flex-row'>
                                     <input className='w-[40%]'
                                         type='text'
-                                        placeholder='  Institute'
+                                        placeholder='Institute'
                                         value={edu.institute}
                                         onChange={(e) => handleEduChange(edu.id, 'institute', e.target.value)}
                                     />
 
                                     <input className='w-[40%]'
                                         type='text'
-                                        placeholder='  Degree'
+                                        placeholder='Degree'
                                         value={edu.degree}
                                         onChange={(e) => handleEduChange(edu.id, 'degree', e.target.value)}
                                     />
+                                   </div>
+                                    <div className="flex flex-row w-[100%] mt-[20px] gap-6">
+                                        <div className="flex flex-col gap-1">
+                                            <label className='flex justify-start'>Start Year:</label>
 
-                                    <input className='w-[40%]'
-                                        type="text"
-                                        placeholder='  ex: 20XX-20XX'
-                                        value={edu.duration}
-                                        onChange={(e) => handleEduChange(edu.id, 'duration', e.target.value)}
-                                    />
+                                            <YearPicker
+                                                value={edu.startyear}
+                                                onChange={(val) =>
+                                                    handleEduChange(edu.id, "startyear", val)
+                                                }
+                                            />
+                                        </div>
 
-                                </div>
+                                        <div className="flex flex-col gap-1">
+                                            <label className='flex justify-start'>End Year:</label>
+
+                                            <YearPicker
+                                        
+                                                value={edu.endyear}
+                                                onChange={(val) =>
+                                                    handleEduChange(edu.id, "endyear", val)
+                                                }
+                                            />
+                                        </div>
+                                    </div>
                             </div>
 
                         )}

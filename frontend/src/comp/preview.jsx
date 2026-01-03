@@ -23,14 +23,16 @@ function Preview({ resume }) {
   const hasEducation = resume.education.some(edu =>
     edu.institute.trim() !== "" ||
     edu.degree.trim() !== "" ||
-    edu.duration.trim() !== ""
+    edu.startyear !== null ||
+    edu.endyear !== null
   );
+  
 
   const hasLang = resume.languages.some(lang=>
     lang.name.trim() !==""
-    )
+    );
 
-  const haswork = resume.experience.some(work =>
+  const haswork = resume.experience.some(work=>
     work.job_title.trim() !== "" ||
     work.company.trim() !== ""
   );
@@ -151,15 +153,19 @@ function Preview({ resume }) {
 
               <div className="text-sm space-y-2">
                 {resume.education.map(edu =>
-                  edu.institute || edu.degree || edu.duration ? (
+                  edu.institute || edu.degree || edu.startyear || edu.endyear ? (
                     <div key={edu.id}>
                       <div className='flex flex-row gap-2 ml-[30px] mt-[20px]'>
                         {edu.institute && (
                           <p className="font-semibold">{edu.institute}</p>
                         )}
                         {edu.institute && <p>|</p>}
-                        {edu.duration && (
-                          <p className="text-gray-500">{edu.duration}</p>
+                        {edu.startyear && (
+                          <div className='flex flex-row'>
+                          <p className="text-gray-500">{edu.startyear}</p>
+                          {edu.endyear && <p>-</p>}
+                          <p className='text-gray-500'>{edu.endyear}</p>
+                         </div>
                         )}
                       </div>
                       {edu.degree && <p className='flex flex-start ml-[30px]'>{edu.degree}</p>}

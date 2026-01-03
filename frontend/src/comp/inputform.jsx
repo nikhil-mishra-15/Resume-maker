@@ -31,27 +31,29 @@ function Inputform() {
 
     about: "",
 
-    education: [
-      {
-        id: crypto.randomUUID(),
-        institute: "",
-        degree: "",
-        duration: "",
-        open: true
-      }
-    ],
-
     experience: [
       {
         id: crypto.randomUUID(),
         job_title: "",
         company: "",
         duration: "",
-        city: "",
-        description: "",
+        role:"",
+        description:"",
         open: true
       }
     ],
+
+    education: [
+      {
+        id: crypto.randomUUID(),
+        institute: "",
+        degree: "",
+        startyear: null,
+        endyear: null,
+        open: true
+      }
+    ],
+    
 
     skills: [
       {

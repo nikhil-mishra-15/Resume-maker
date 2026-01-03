@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import MonthYearPicker from "./monthyearpicker";
 
-function Courses() {
+function Cor() {
   const navigate = useNavigate();
   const { resume, setResume } = useOutletContext();
   const courses = resume.courses;
@@ -67,35 +66,29 @@ function Courses() {
                   <input className='w-[95%]'
                     type='text'
                     placeholder='  Institution'
-                    value={course.institution}
+                    value={courses.institution}
                     onChange={(e) => handleCourseChange(course.id, 'institution', e.target.value)}
                   />
-                  <div className="flex flex-row w-[250%] mt-[20px] gap-1 flex-start">
+                  <div className="flex flex-row w-[200%] mt-[20px]">
                     <div className="flex flex-col">
-                      <label className="flex justify-start mb-[2px] font-medium">Start Date:</label>
-
-                      <MonthYearPicker
+                      <label className="w-[50%]">Start Date:</label>
+                      <input className='w-[75%] px-[20px] py-[5px] mt-[5px]'
+                        type="text"
+                        placeholder='ex: Jan-20XX'
                         value={course.startdate}
-                        placeholder="MM / YYYY"
-                        onChange={(val) =>
-                          handleCourseChange(course.id, "startdate", val)
-                        }
+                        onChange={(e) => handleCourseChange(course.id, 'startdate', e.target.value)}
                       />
                     </div>
-
                     <div className="flex flex-col">
-                      <label className="flex justify-start mb-[2px] font-medium">End Date:</label>
-
-                      <MonthYearPicker
+                      <label className="w-[40%]">End Date:</label>
+                      <input className='w-[75%] px-[20px] py-[5px] mt-[5px]'
+                        type="text"
+                        placeholder='ex: Nov-20XX'
                         value={course.enddate}
-                        placeholder="MM / YYYY"
-                        onChange={(val) =>
-                          handleCourseChange(course.id, "enddate", val)
-                        }
+                        onChange={(e) => handleCourseChange(course.id, 'enddate', e.target.value)}
                       />
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -138,4 +131,4 @@ hover:bg-white hover:text-black hover:border-white transition-all  shadow-[0_2px
     </div>
   );
 }
-export default Courses;
+export default Cor;
