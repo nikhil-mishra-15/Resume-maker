@@ -107,7 +107,9 @@ function Preview({ resume }) {
             {resume.links.map(link=>(
               <div key={link.id} className=''>
               {link.label && (
-                <a href={link.address} className='flex flex-row gap-1 place-content-center'>
+                <a href={ link.address.startsWith("http")
+        ? link.address
+        : `https://${link.address}`} className='flex flex-row gap-1 place-content-center'>
                 <img src={SOCIAL_ICONS[link.label]} height="5px" width="15px"/>
                 <p className='text-gray-700 text-[12px]'>{link.label}</p>
                 </a>
