@@ -15,6 +15,13 @@ function Languages() {
   const navigate = useNavigate();
   const { resume, setResume } = useOutletContext();
 
+  const deletelang = (id) => {
+    setResume(prev => ({
+        ...prev,
+        languages: prev.languages.filter(lang => lang.id !== id)
+    }));
+};
+
   const [open, setOpen] = useState(null); // store language id
   const ref = useRef(null);
 
@@ -154,7 +161,7 @@ function Languages() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  deleteLink(link.id);
+                  deletelang(lang.id);
                 }}
                 className="text-red-600 text-sm font-semibold hover:underline"
               >
