@@ -131,7 +131,7 @@ function Preview({ resume }) {
         {resume.personal.address && <hr className='bg-white mx-6' />}
         {resume.personal.about && (
           <div >
-            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center' style={{ backgroundColor: "#f5f5f5" }}>
+            <div className='bg-gray-200 w-[98%] mx-auto flex place-content-center'>
               <p className='text-sm font-bold ml-[20px] flex flex-start underline underline-offset-6 pb-[5px] tracking-[2px]'>PROFESSIONAL SUMMARY</p>
             </div>
             <p className="pl-[10px] text-[12px] mx-auto mt-[22px] leading-relaxed text-black whitespace-pre-wrap max-w-[90%] text-left">
