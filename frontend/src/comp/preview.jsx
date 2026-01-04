@@ -99,10 +99,10 @@ function Preview({ resume }) {
 
 
   return (
-    <div id="resume-preview" >
+    <div id="resume" >
       <section className='flex flex-col gap-3'>
         <div className='flex flex-col relative text-center'>
-          <h2 className='text-4xl py-auto'>{resume.personal.first_name}</h2>
+          <h2 className='text-4xl'>{resume.personal.first_name}</h2>
           <p className='font-bold text-m text-gray-500 mt-[1px] mb-[5px]'>{resume.personal.position}</p>
           {haslink && (
             <div className='flex flex-row gap-2 w-[80%] mx-auto justify-center mt-[13px]'>

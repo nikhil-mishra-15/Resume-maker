@@ -112,7 +112,7 @@ function Inputform() {
 
       <div className='min-w-[1240px] h-full flex flex-row gap-2 text-black'>
         {fullpre ? (
-          <div className='shadow-[0px_10px_25px_10px_rgba(0,0,0,0.20)] w-[73%] mx-auto min-h-screen'>
+          <div className='shadow-[0px_10px_25px_10px_rgba(0,0,0,0.20)] w-[210mm] min-h-[297mm] mx-auto'>
             <Preview resume={resume} />
           </div>
         ) : (
@@ -158,7 +158,7 @@ function Inputform() {
                 </div>
               </div>
             </div>
-            <div className='w-[65%] min-h-full shadow-[0px_10px_25px_10px_rgba(0,0,0,0.17)]'>
+            <div className='w-[210mm] min-h-[297mm] shadow-[0px_10px_25px_10px_rgba(0,0,0,0.17)]'>
               <Preview resume={resume} />
             </div>
           </>
